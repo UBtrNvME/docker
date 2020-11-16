@@ -9,6 +9,8 @@ ENV LANG C.UTF-8
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        cmake \
+        protobuf-compiler \
         ca-certificates \
         curl \
         dirmngr \
