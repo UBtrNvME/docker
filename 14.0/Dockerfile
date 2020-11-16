@@ -9,6 +9,7 @@ ENV LANG C.UTF-8
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    	libgl1-mesa-glx \
         ca-certificates \
         curl \
         dirmngr \
@@ -36,8 +37,8 @@ RUN apt-get update && \
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
     && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
-COPY requirments.txt /requirments.txt
-RUN pip install --install-option="--prefix=/install" -r /requirments.txt; rm -rf /requirments.txt
+RUN pip3 install --upgrade pip setuptools wheel
+RUN pip3 install pdf2image scipy opencv-python
 
 # install latest postgresql-client
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
